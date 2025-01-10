@@ -2,19 +2,19 @@ package com.bazan.sporteventmanager.users.presentation;
 
 import com.bazan.sporteventmanager.users.application.DTOs.UserRequest;
 import com.bazan.sporteventmanager.users.application.DTOs.UserResponse;
-import com.bazan.sporteventmanager.users.application.create.IUserService;
+import com.bazan.sporteventmanager.users.application.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
 class UserController {
-    private final IUserService userService;
+    private final UserService userService;
 
     @PostMapping
     ResponseEntity<UserResponse> createUser(
@@ -25,5 +25,19 @@ class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("{id}")
+    ResponseEntity<UserResponse> getUserById(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(userService.getUserById(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping
+    ResponseEntity<List<UserResponse>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

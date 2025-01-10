@@ -1,7 +1,7 @@
 package com.bazan.sporteventmanager.events.application.participants;
 
 import com.bazan.sporteventmanager.events.domain.participants.Participant;
-import com.bazan.sporteventmanager.events.infrastructure.participants.IParticipantRepository;
+import com.bazan.sporteventmanager.events.infrastructure.participants.ParticipantRepository;
 import com.bazan.sporteventmanager.users.contracts.UserCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ParticipantCreatedEventHandler {
-    private final IParticipantRepository participantRepository;
+    private final ParticipantRepository participantRepository;
 
     @ApplicationModuleListener
     void handle(UserCreatedEvent participantCreatedEvent) {
