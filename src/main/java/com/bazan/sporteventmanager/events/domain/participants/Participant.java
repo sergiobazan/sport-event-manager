@@ -1,5 +1,6 @@
 package com.bazan.sporteventmanager.events.domain.participants;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,9 @@ public class Participant {
     private String name;
     @Column(unique = true, nullable = false)
     private String email;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    @JsonBackReference
+    private Team team;
 }
