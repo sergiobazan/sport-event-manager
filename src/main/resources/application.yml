@@ -12,6 +12,10 @@ spring:
     hibernate:
       ddl-auto: update
 
+security:
+  jwt:
+    secret-key: 750ed620716d740b1fe58cdf6dcf8ab4728b4689e8112664e1d0a9bbd9f58f54716def8a5bb827372438a2d23a15b97457
+
 server:
   port: 5000
   servlet:
